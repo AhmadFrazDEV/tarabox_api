@@ -1,15 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 from playwright.sync_api import sync_playwright
 import re
 
 app = Flask(__name__)
 
-@app.route('/extract')
-def extract_video():
-    url = request.args.get('link')
-    if not url:
-        return jsonify({"error": "No link provided"}), 400
+# 🧩 Your Terabox link goes here (replace this!)
+TERABOX_LINK = "https://1024terabox.com/s/1nCEAPmKnGU6VbTotuHagoQ"
 
+@app.route('/')
+def fetch_video():
     video_url = ""
 
     try:
@@ -35,9 +34,8 @@ def extract_video():
                     video_url = req_url
 
             page.on("request", handle_request)
-            page.goto(url)
+            page.goto(TERABOX_LINK)
             page.wait_for_timeout(20000)  # Wait 20 seconds
-
             browser.close()
 
             if video_url:
