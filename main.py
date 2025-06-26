@@ -1,3 +1,7 @@
+import subprocess
+subprocess.run(["playwright", "install", "chromium"])
+
+
 from flask import Flask, jsonify
 from playwright.sync_api import sync_playwright
 import re
