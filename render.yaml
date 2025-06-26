@@ -2,5 +2,5 @@ services:
   - type: web
     name: terabox-api
     env: python
-    buildCommand: pip install -r requirements.txt && playwright install
+    buildCommand: pip install -r requirements.txt && playwright install chromium
     startCommand: python main.py
